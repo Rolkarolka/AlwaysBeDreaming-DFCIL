@@ -20,10 +20,19 @@ Modern computer vision applications suffer from catastrophic forgetting when inc
 * torchvision >= 0.2.1
 
 ### Setup
- * Install anaconda: https://www.anaconda.com/distribution/
+#### Setup on GCP
+* Go to https://console.cloud.google.com/compute/instances?onCreate=true&project=dreamingcl 
+* Create instance with properties:
+```
+Graphic processor: NVIDIA V100
+Machine Type: n1-highmem-8
+Boot disk: Deep Learning VM for PyTorch 1.12 with CUDA 11.3 M111
+```
+ * clone repository `https://github.com/Rolkarolka/AlwaysBeDreaming-DFCIL.git`
  * set up conda environmet w/ python 3.6, ex: `conda create --name py36 python=3.6`
  * `conda activate py36`
- * `sh install_requirements.sh`
+ * `sh install-requirements.sh`
+
 
 ### Datasets
 Download/Extract the following datasets to the dataset folder under the project root directory.
