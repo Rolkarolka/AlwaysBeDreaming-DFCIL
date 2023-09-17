@@ -141,7 +141,7 @@ class DeepInversionGenBN(NormalNN):
 
                 for idx in range(2):
                     x_replay, y_replay, y_replay_hat = epoch_img_sample[idx]
-                    x_replay.save(f"sample_epoch_{epoch}_{idx}_{y_replay}_{y_replay_hat}.png")
+                    x_replay.save(f"./imgs/sample_epoch_{epoch}_{idx}_{y_replay}_{y_replay_hat}.png")
 
 
         self.model.eval()
