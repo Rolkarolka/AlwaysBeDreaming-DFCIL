@@ -2,6 +2,7 @@ from __future__ import print_function
 import torch
 from torchvision.utils import save_image
 import torch.nn as nn
+import uuid
 from torch.nn import functional as F
 import models
 from utils.metric import AverageMeter, Timer
@@ -142,7 +143,7 @@ class DeepInversionGenBN(NormalNN):
 
                 if epoch_img_sample:
                     x_replay, y_replay = epoch_img_sample[0]
-                    filename = f"./imgs/sample_epoch_{epoch}_{y_replay.cpu().item()}.png"
+                    filename = f"./imgs/sample_epoch_{epoch}_{y_replay.cpu().item()}_{str(uuid.uuid4())}.png"
                     save_image(x_replay.cpu(), filename)
 
 
