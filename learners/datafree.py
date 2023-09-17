@@ -142,6 +142,10 @@ class DeepInversionGenBN(NormalNN):
 
                 if epoch_img_sample:
                     x_replay, y_replay, y_replay_hat = epoch_img_sample[0]
+                    print("Replay")
+                    print(x_replay, y_replay, y_replay_hat)
+                    print(x_replay.shape)
+                    print(y_replay.shape)
                     img = Image.fromarray(x_replay)
                     img.save(f"./imgs/sample_epoch_{epoch}_{y_replay}_{y_replay_hat}.png")
 
