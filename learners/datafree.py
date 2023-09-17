@@ -85,7 +85,7 @@ class DeepInversionGenBN(NormalNN):
 
                     # send data to gpu
                     if self.gpu:
-                        x =x.cuda()
+                        x = x.cuda()
                         y = y.cuda()
 
                     # data replay
