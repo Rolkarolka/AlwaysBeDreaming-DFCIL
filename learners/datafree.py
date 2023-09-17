@@ -1,5 +1,6 @@
 from __future__ import print_function
 import torch
+from PIL import Image
 import torch.nn as nn
 from torch.nn import functional as F
 import models
@@ -141,7 +142,8 @@ class DeepInversionGenBN(NormalNN):
 
                 if epoch_img_sample:
                     x_replay, y_replay, y_replay_hat = epoch_img_sample[0]
-                    x_replay.save(f"./imgs/sample_epoch_{epoch}_{y_replay}_{y_replay_hat}.png")
+                    img = Image.fromarray(x_replay)
+                    img.save(f"./imgs/sample_epoch_{epoch}_{y_replay}_{y_replay_hat}.png")
 
 
         self.model.eval()
