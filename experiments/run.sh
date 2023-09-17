@@ -44,3 +44,9 @@ python -u run_dfcil.py --dataset CIFAR100 --train_aug --rand_split --gpuid $GPUI
     --gen_model_name CIFAR_GEN --gen_model_type generator \
     --beta 1 --power_iters $PI --deep_inv_params 1e-3 5e1 1e-3 1e3 1 \
     --overwrite $OVERWRITE --max_task $MAXTASK --log_dir ${OUTDIR}/abd
+
+if [ -s error.log ]; then
+    echo "Errors occurred. Check error.log for details."
+else
+    echo "Script executed successfully."
+fi
