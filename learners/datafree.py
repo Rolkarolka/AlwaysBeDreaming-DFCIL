@@ -14,7 +14,7 @@ class DeepInversionGenBN(NormalNN):
 
     def __init__(self, learner_config):
         super(DeepInversionGenBN, self).__init__(learner_config)
-        self.inversion_replay = True
+        self.inversion_replay = False
         self.previous_teacher = None
         self.dw = self.config['DW']
         self.device = 'cuda' if self.gpu else 'cpu'
