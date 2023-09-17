@@ -14,7 +14,7 @@ class DeepInversionGenBN(NormalNN):
 
     def __init__(self, learner_config):
         super(DeepInversionGenBN, self).__init__(learner_config)
-        self.inversion_replay = False
+        self.inversion_replay = True
         self.previous_teacher = None
         self.dw = self.config['DW']
         self.device = 'cuda' if self.gpu else 'cpu'
@@ -74,6 +74,7 @@ class DeepInversionGenBN(NormalNN):
                 if epoch > 0: self.scheduler.step()
                 for param_group in self.optimizer.param_groups:
                     self.log('LR:', param_group['lr'])
+                epoch_img_sample = []
                 batch_timer.tic()
                 for i, (x, y, task)  in enumerate(train_loader):
 
@@ -88,6 +89,7 @@ class DeepInversionGenBN(NormalNN):
                     # data replay
                     if self.inversion_replay:
                         x_replay, y_replay, y_replay_hat = self.sample(self.previous_teacher, len(x), self.device)
+                        epoch_img_sample.add(x_replay[0])
 
                     # if KD
                     if self.inversion_replay:
@@ -136,6 +138,9 @@ class DeepInversionGenBN(NormalNN):
                 losses = [AverageMeter() for i in range(3)]
                 acc = AverageMeter()
                 accg = AverageMeter()
+
+                for idx in range(3):
+                    epoch_img_sample[idx].save(f"sample_epoch_{epoch}_{idx}")
 
 
         self.model.eval()
