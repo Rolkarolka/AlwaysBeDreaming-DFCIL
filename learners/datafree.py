@@ -89,6 +89,7 @@ class DeepInversionGenBN(NormalNN):
                     # data replay
                     if self.inversion_replay:
                         x_replay, y_replay, y_replay_hat = self.sample(self.previous_teacher, len(x), self.device)
+                        print(x_replay, y_replay, y_replay_hat)
                         epoch_img_sample.append([x_replay[0], y_replay[0], y_replay_hat[0]])
 
                     # if KD

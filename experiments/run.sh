@@ -1,5 +1,5 @@
 # sh experiments/run.sh n
-
+rm -rf outputs/
 # process inputs
 DEFAULTGPU=0
 GPUID=${1:-$DEFAULTGPU}
