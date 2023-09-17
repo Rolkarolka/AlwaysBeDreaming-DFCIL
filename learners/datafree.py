@@ -142,8 +142,8 @@ class DeepInversionGenBN(NormalNN):
 
                 if epoch_img_sample:
                     x_replay, y_replay = epoch_img_sample[0]
-                    img = Image.fromarray(x_replay.numpy())
-                    img.save(f"./imgs/sample_epoch_{epoch}_{y_replay.item()}.png")
+                    img = Image.fromarray(x_replay.cpu().numpy())
+                    img.save(f"./imgs/sample_epoch_{epoch}_{y_replay.cpu().item()}.png")
 
 
         self.model.eval()
