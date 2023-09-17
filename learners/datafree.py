@@ -89,7 +89,7 @@ class DeepInversionGenBN(NormalNN):
                     # data replay
                     if self.inversion_replay:
                         x_replay, y_replay, y_replay_hat = self.sample(self.previous_teacher, len(x), self.device)
-                        epoch_img_sample.add(x_replay[0])
+                        epoch_img_sample.append([x_replay[0], y_replay[0], y_replay_hat[0]])
 
                     # if KD
                     if self.inversion_replay:
@@ -139,8 +139,9 @@ class DeepInversionGenBN(NormalNN):
                 acc = AverageMeter()
                 accg = AverageMeter()
 
-                for idx in range(3):
-                    epoch_img_sample[idx].save(f"sample_epoch_{epoch}_{idx}")
+                for idx in range(2):
+                    x_replay, y_replay, y_replay_hat = epoch_img_sample[idx]
+                    x_replay.save(f"sample_epoch_{epoch}_{idx}_{y_replay}_{y_replay_hat}.png")
 
 
         self.model.eval()
