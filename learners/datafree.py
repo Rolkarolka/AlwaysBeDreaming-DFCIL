@@ -38,7 +38,7 @@ class DeepInversionGenBN(NormalNN):
     ##########################################
 
     def learn_batch(self, train_loader, train_dataset, model_save_dir, val_loader=None):
-        
+        labels = {v: k for k, v in train_dataset.class_to_idx.items()}
         self.pre_steps()
 
         # try to load model
@@ -143,7 +143,7 @@ class DeepInversionGenBN(NormalNN):
 
                 if epoch_img_sample:
                     x_replay, y_replay = epoch_img_sample[0]
-                    filename = f"./imgs/sample_epoch_{epoch}_{y_replay.cpu().item()}_{str(uuid.uuid4())}.png"
+                    filename = f"./imgs/sample_epoch_{epoch}_{labels[y_replay.cpu().item()]}__{str(uuid.uuid4())}.png"
                     save_image(x_replay.cpu(), filename)
 
 
