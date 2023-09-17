@@ -92,6 +92,7 @@ class Trainer:
         self.train_dataset = Dataset(args.dataroot, train=True, tasks=self.tasks,
                             download_flag=True, transform=train_transform, 
                             seed=self.seed, validation=args.validation)
+        self.train_dataset.class_to_idx()
         self.test_dataset  = Dataset(args.dataroot, train=False, tasks=self.tasks,
                                 download_flag=False, transform=test_transform, 
                                 seed=self.seed, validation=args.validation)
